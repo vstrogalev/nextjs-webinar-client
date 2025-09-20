@@ -1,11 +1,14 @@
 import styles from "./page.module.css";
 
-export default function Home() {
+export default function RacketsPage() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        Main page
+        Rackets
       </main>
+      <footer className={styles.footer}>
+
+      </footer>
     </div>
   );
 }

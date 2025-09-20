@@ -1,0 +1,22 @@
+.headerNavigationContainer {
+  .links {
+    display: flex;
+    gap: 0.8rem;
+
+    .link {
+      color: gray;
+
+      &:hover {
+        color: black;
+      }
+
+      &.active {
+        color: rgb(215, 140, 0);
+
+        &:hover {
+          color: rgb(255, 166, 0)
+        }
+      }
+    }
+  }
+}
