@@ -1,1 +1,0 @@
-export { RacketsList } from './RacketsList'

@@ -1,5 +1,5 @@
 import { Racket } from '@/types/racket';
-import { RacketCard } from '@/components/RacketCard';
+import { RacketCard } from '@/components/RacketCard/RacketCard';
 import { PATHS } from '@/constants/paths';
 import styles from './RacketsList.module.css'
 

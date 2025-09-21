@@ -11,10 +11,6 @@ interface BrandFilterProps {
 }
 
 export const BrandFilter = ({ brands, selectedBrandId, onSelect }: BrandFilterProps) => {
-  const handleSelect = (id: number) => {
-    onSelect(id);
-  }
-
   return (
     <aside className={styles.brandFilterContainer}>
       <div className={styles.title}>Бренд</div>
@@ -24,7 +20,7 @@ export const BrandFilter = ({ brands, selectedBrandId, onSelect }: BrandFilterPr
           {brands.map(brand => (
             <li
               key={brand.id}
-              onClick={() => handleSelect(brand.id)}
+              onClick={() => onSelect(brand.id)}
               className={clsx(styles.link, { [styles.active]: brand.id === selectedBrandId })}
             >
               {brand.name}

@@ -1,3 +1,4 @@
+import { BRAND_FILTER_ALL } from '@/constants/brandFilterAll';
 import { Brand } from '@/types/brand';
 import { Racket } from '@/types/racket';
 
@@ -13,7 +14,7 @@ export const getBrandList = (rackets: Racket[]): Brand[] => {
   })
 
   const allBrands: Brand = {
-    id: -1,
+    id: BRAND_FILTER_ALL,
     name: 'All',
   }
 

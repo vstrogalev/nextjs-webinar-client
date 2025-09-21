@@ -1,1 +1,0 @@
-export { BrandFilter } from './BrandFilter'

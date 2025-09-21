@@ -1,7 +1,7 @@
 import { mockRackets } from '@/constants/mockRackets';
 import { notFound } from 'next/navigation';
-import { RacketDescription } from '@/components/RacketDescription';
-import { RacketCard } from '@/components/RacketCard';
+import { RacketDescription } from '@/components/RacketDescription/RacketDescription';
+import { RacketCard } from '@/components/RacketCard/RacketCard';
 import styles from "./page.module.css";
 
 interface RacketPageProps {
@@ -9,7 +9,7 @@ interface RacketPageProps {
 }
 
 export async function generateStaticParams() {
-  const rackets = await Promise.resolve(mockRackets).then((res) => res.slice(0, 3))
+  const rackets = mockRackets.slice(0, 3);
 
   return rackets.map((racket) => ({
     id: String(racket.id),

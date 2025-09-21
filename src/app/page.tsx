@@ -1,12 +1,12 @@
-import { TitlePanel } from './_components/TitlePanel';
-import { TopRackets } from './_components/TopRackets';
+import { RacketsTitle } from './_components/RacketsTitle/RacketsTitle';
+import { TopRackets } from './_components/TopRackets/TopRackets';
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <TitlePanel />
+        <RacketsTitle />
         <TopRackets />
       </main>
     </div>

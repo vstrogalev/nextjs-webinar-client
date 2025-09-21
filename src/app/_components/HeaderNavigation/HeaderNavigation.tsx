@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link'
-import styles from './HeaderNavigation.module.css'
 import { PATHS } from '@/constants/paths'
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation'
+import styles from './HeaderNavigation.module.css'
 
 export const HeaderNavigation = () => {
   const path = usePathname();

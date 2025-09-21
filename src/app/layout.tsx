@@ -3,8 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Roboto } from 'next/font/google';
-import { Header } from '@/app/_components/Header';
-import { Footer } from '@/app/_components/Footer';
+import { Header } from './_components/Header/Header';
+import { Footer } from './_components/Footer/Footer';
 import styles from './layout.module.css';
 
 const roboto = Roboto({

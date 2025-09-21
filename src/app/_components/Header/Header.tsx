@@ -1,4 +1,4 @@
-import { HeaderNavigation } from '../HeaderNavigation';
+import { HeaderNavigation } from '../HeaderNavigation/HeaderNavigation';
 import styles from './Header.module.css';
 
 export const Header = () => {

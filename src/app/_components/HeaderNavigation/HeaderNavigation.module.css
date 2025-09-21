@@ -2,20 +2,20 @@
   .links {
     display: flex;
     gap: 0.8rem;
+  }
 
-    .link {
-      color: var(--secondary);
+  .link {
+    color: var(--secondary);
+
+    &:hover {
+      color: var(--foreground);
+    }
+
+    &.active {
+      color: var(--selected);
 
       &:hover {
-        color: var(--foreground);
-      }
-
-      &.active {
-        color: var(--selected);
-
-        &:hover {
-          color: var(--selectedHover)
-        }
+        color: var(--selectedHover)
       }
     }
   }
