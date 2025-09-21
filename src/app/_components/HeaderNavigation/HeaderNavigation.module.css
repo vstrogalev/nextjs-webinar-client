@@ -4,17 +4,17 @@
     gap: 0.8rem;
 
     .link {
-      color: gray;
+      color: var(--secondary);
 
       &:hover {
-        color: black;
+        color: var(--foreground);
       }
 
       &.active {
-        color: rgb(215, 140, 0);
+        color: var(--selected);
 
         &:hover {
-          color: rgb(255, 166, 0)
+          color: var(--selectedHover)
         }
       }
     }

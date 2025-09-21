@@ -1,0 +1,25 @@
+.brandFilterContainer {
+  .title {
+    color: var(--secondary);
+    margin-bottom: 1rem;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    .link {
+      color: var(--foreground);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--foregroundHoverColor);
+      }
+
+      &.active {
+        font-weight: 800;
+      }
+    }
+  }
+}
