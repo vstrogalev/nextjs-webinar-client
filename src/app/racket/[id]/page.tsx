@@ -8,6 +8,14 @@ interface RacketPageProps {
   params: Promise<{ id: string }>
 }
 
+export async function generateStaticParams() {
+  const rackets = await Promise.resolve(mockRackets).then((res) => res.slice(0, 3))
+
+  return rackets.map((racket) => ({
+    id: String(racket.id),
+  }))
+}
+
 export default async function RacketPage({ params }: RacketPageProps) {
   const { id } = await params;
   const racket = mockRackets.find(racket => racket.id === Number(id));
