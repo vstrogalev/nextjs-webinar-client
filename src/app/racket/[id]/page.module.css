@@ -1,0 +1,16 @@
+.page {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 3fr 4fr 3fr;
+  gap: 2rem;
+
+  .card {
+    flex-grow: 1;
+  }
+
+  .price {
+    padding-top: 5rem;
+    font-size: 1.8rem;
+    font-weight: 800;
+  }
+}

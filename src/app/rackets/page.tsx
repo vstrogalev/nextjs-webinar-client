@@ -6,9 +6,6 @@ export default function RacketsPage() {
       <main className={styles.main}>
         Rackets
       </main>
-      <footer className={styles.footer}>
-
-      </footer>
     </div>
   );
 }

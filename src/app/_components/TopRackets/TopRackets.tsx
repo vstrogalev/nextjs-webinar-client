@@ -1,6 +1,6 @@
 import { Racket } from '@/types/racket'
 import { mockRackets } from '@/constants/mockRackets'
-import { RacketCard } from '@/app/components/RacketCard';
+import { RacketCard } from '@/components/RacketCard';
 import { PATHS } from '@/constants/paths';
 import styles from './TopRackets.module.css'
 
