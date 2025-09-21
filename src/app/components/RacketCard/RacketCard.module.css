@@ -1,0 +1,21 @@
+.racketCardContainer {
+  display: grid;
+  place-items: center;
+
+  .image {
+    padding: 0.1rem;
+    width: 100%;
+    height: 30rem;
+    border: var(--borderPrimary);
+    border-radius: var(--borderRadius);
+    margin-bottom: 1rem;
+
+    &:hover {
+      border: var(--borderSecondary);
+    }
+
+    .name {
+      font-size: medium;
+    }
+  }
+}

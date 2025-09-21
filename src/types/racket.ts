@@ -1,6 +1,6 @@
 import { Brand } from './brand';
 
-export interface RootInterface {
+export interface Racket {
   id: number;
   name: string;
   imageUrl: string;

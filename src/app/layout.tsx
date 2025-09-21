@@ -5,9 +5,9 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Roboto } from 'next/font/google';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
+import { Header } from '@/app/_components/Header';
+import { Footer } from '@/app/_components/Footer';
 import styles from './layout.module.css';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 
 const roboto = Roboto({
   variable: '--font-roboto',

@@ -1,6 +1,11 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --borderColor: rgb(170, 170, 170);
+  --borderHoverColor: rgb(60, 60, 60);
+  --borderPrimary: 1px solid var(--borderColor);
+  --borderSecondary: 1px solid var(--borderHoverColor);
+  --borderRadius: 4%;
 }
 
 html,

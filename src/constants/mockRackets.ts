@@ -1,4 +1,6 @@
-export const rackets = [
+import { Racket } from '@/types/racket';
+
+export const mockRackets: Racket[] = [
   {
     "id": 1,
     "name": "Wilson Pro Staff 97 v14",
