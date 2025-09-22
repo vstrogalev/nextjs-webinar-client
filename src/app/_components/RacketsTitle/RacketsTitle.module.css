@@ -3,19 +3,19 @@
   padding: 1rem 0;
   align-items: center;
   justify-content: space-between;
+}
 
-  .title {
-    font-weight: 400;
-  }
+.title {
+  font-weight: 400;
+}
 
-  .link {
-    color: blue;
+.link {
+  color: blue;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    &:hover {
-      color: rgb(0, 0, 165);
-    }
+  &:hover {
+    color: rgb(0, 0, 165);
   }
 }

@@ -9,7 +9,7 @@ import { BRAND_FILTER_ALL } from '@/constants/brandFilterAll';
 import styles from "./page.module.css";
 
 export default function RacketsPage() {
-  const [selectedBrandId, setSelectedBrandId] = useState<number>(-1);
+  const [selectedBrandId, setSelectedBrandId] = useState<number>(BRAND_FILTER_ALL);
 
   const filteredRackets = selectedBrandId === BRAND_FILTER_ALL ? mockRackets : mockRackets.filter(racket => racket.brand.id === selectedBrandId)
 
