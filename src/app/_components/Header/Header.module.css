@@ -1,0 +1,11 @@
+.headerContainer {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: var(--borderPrimary);
+
+  .title {
+    flex-grow: 1;
+    text-align: center;
+  }
+}

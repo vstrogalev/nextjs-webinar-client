@@ -1,0 +1,15 @@
+.linkActiveByPath {
+  color: var(--secondary);
+
+  &:hover {
+    color: var(--foreground);
+  }
+}
+
+.active {
+  color: var(--selected);
+
+  &:hover {
+    color: var(--selectedHover)
+  }
+}

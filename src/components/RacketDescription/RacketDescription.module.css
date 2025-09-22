@@ -1,0 +1,19 @@
+.racketDescriptionContainer {
+  padding-top: 5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .brand {
+    color: var(--secondary);
+  }
+
+  .name {
+    font-size: 1.8rem;
+  }
+
+  .description {
+    font-weight: 600;
+  }
+}
