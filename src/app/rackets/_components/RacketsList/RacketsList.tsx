@@ -14,7 +14,7 @@ export const RacketsList = ({ rackets }: RacketsListProps) => {
       <h2>Ракетки</h2>
       <ul className={styles.list}>
         {rackets.map(racket => (
-          <li key={racket.id} className={styles.item}>
+          <li key={racket.id}>
             <RacketCard
               imageUrl={racket.imageUrl}
               href={`${PATHS.RACKET}/${racket.id}`}

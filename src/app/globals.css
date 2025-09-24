@@ -9,6 +9,8 @@
   --borderPrimary: 1px solid var(--borderColor);
   --borderSecondary: 1px solid var(--foregroundHoverColor);
   --borderRadius: 4%;
+  --gapMedium: 0.8rem;
+  --gapXXL: 2rem;
 }
 
 html,

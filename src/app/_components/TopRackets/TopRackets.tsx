@@ -5,7 +5,7 @@ import { PATHS } from '@/constants/paths';
 import styles from './TopRackets.module.css'
 
 export const TopRackets = () => {
-  const rackets: Racket[] = mockRackets.slice(0, 3);
+  const rackets: Racket[] = mockRackets;
 
   return (
     <div className={styles.topRacketsContainer}>

@@ -7,7 +7,7 @@
   .links {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: var(--gapMedium);
 
     .link {
       color: var(--foreground);
