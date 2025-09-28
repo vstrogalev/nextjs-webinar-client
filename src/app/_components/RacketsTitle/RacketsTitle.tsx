@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ROUTES } from '@/constants/routes'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import styles from './RacketsTitle.module.css'
 

@@ -1,4 +1,6 @@
-export function buildQueryString(params: Record<string, any>): string {
+type RequestValue = number | string | undefined
+
+export function buildQueryString(params: Record<string, RequestValue>): string {
   const searchParams = new URLSearchParams();
 
   Object.entries(params).forEach(([key, value]) => {

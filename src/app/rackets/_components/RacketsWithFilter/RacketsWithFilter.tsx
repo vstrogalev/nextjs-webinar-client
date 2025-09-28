@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { BRAND_FILTER_ALL } from '@/constants/brandFilterAll';
 import { BrandFilter } from '@/components/BrandFilter/BrandFilter';
 import { RacketsList } from '../../../../components/RacketsList/RacketsList';
@@ -18,9 +18,9 @@ export const RacketsWithFilter = ({ brands: initialBrands = [], initialRackets =
   const [selectedBrandId, setSelectedBrandId] = useState<number>(BRAND_FILTER_ALL);
   const [rackets, setRackets] = useState(initialRackets);
 
-  const brands: Brand[] = [{ id: BRAND_FILTER_ALL, name: 'All' }, ...initialBrands];
+  const brands: Brand[] = useMemo(() => [{ id: BRAND_FILTER_ALL, name: 'All' }, ...initialBrands], [initialBrands]);
 
-  const getFilteredRackets = async () => {
+  const getFilteredRackets = useCallback(async () => {
     const brand = brands.filter(brand => {
       return brand.id === selectedBrandId && brand.id !== BRAND_FILTER_ALL;
     });
@@ -36,11 +36,11 @@ export const RacketsWithFilter = ({ brands: initialBrands = [], initialRackets =
     } catch (error) {
       console.log("***** [ ~ RacketsWithFilter.tsx ~ getFilteredRackets ~ error ]", error);
     }
-  }
+  }, [brands, selectedBrandId])
 
   useEffect(() => {
     getFilteredRackets();
-  }, [selectedBrandId])
+  }, [selectedBrandId, getFilteredRackets])
 
 
   return (
