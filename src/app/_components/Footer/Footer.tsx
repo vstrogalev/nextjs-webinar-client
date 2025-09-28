@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import styles from './Footer.module.css';
-import { PATHS } from '@/constants/paths';
+import { ROUTES } from '@/constants/routes';
 
 export const Footer = () => {
   return (
     <footer className={styles.footerContainer}>
-      <Link href={PATHS.ROOT}>TENNIS STORE</Link>
+      <Link href={ROUTES.ROOT}>TENNIS STORE</Link>
     </footer>
   )
 }

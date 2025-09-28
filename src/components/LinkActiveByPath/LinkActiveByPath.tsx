@@ -1,18 +1,17 @@
 'use client';
 
 import { clsx } from 'clsx'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import styles from './LinkActiveByPath.module.css';
 import { usePathname } from 'next/navigation';
+import { ComponentProps } from 'react';
 
-interface LinkActiveByPathProps {
-  href: string;
-  label: string;
-}
+type LinkActiveByPathProps = ComponentProps<typeof NextLink>
 
-export const LinkActiveByPath = ({ href, label }: LinkActiveByPathProps) => {
+export const LinkActiveByPath = ({ children, ...restProps }: LinkActiveByPathProps) => {
   const path = usePathname();
+  const href = restProps.href;
   return (
-    <Link href={href} className={clsx(styles.customLinkContainer, { [styles.active]: path === href })} >{label}</Link>
+    <NextLink {...restProps} className={clsx(styles.customLinkContainer, { [styles.active]: path === href })} >{children}</NextLink>
   )
 }
