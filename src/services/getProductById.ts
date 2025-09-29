@@ -12,7 +12,7 @@ export const getProductById = async (id: number) => {
     return ({ isError: true, data: undefined })
   }
 
-  const data: Racket = await response.json().then(data => data.product);
+  const data: { product: Racket } = await response.json();
 
-  return ({ isError: false, data })
+  return ({ isError: false, data: data.product })
 }

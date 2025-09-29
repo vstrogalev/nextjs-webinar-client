@@ -10,16 +10,22 @@ interface RacketPageProps {
 
 export default async function RacketPage({ params }: RacketPageProps) {
   const { id } = await params;
+  const racketId = Number(id);
 
-  const { isError, data } = await getProductById(Number(id))
-  if (!isError && !data) {
+  if (isNaN(racketId)) {
     notFound();
+  };
+
+  const { isError, data } = await getProductById(racketId);
+
+  if (isError) {
+    return (
+      <div>Something went wrong. Update the page later.</div>
+    )
   }
 
   if (!data) {
-    return (
-      <div>No data.</div>
-    )
+    notFound();
   }
 
   const { imageUrl, name, brand, description, price } = data;

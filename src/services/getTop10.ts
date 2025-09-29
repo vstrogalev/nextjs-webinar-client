@@ -1,7 +1,8 @@
 import { BASE_URL, PATHS } from '@/constants/api'
 import { Racket } from '@/types/racket';
+import { APIResponse } from '@/types/response';
 
-export const getTop10 = async () => {
+export const getTop10 = async (): Promise<APIResponse<Racket[]>> => {
   const response = await fetch(`${BASE_URL}${PATHS.TOP_10}`);
 
   if (response.status === 404) {
