@@ -7,7 +7,11 @@ export default async function RacketsPage() {
   const racketsPromise = getProducts(1, 20);
   const [{ isError: isBrandError, data: brands }, { isError: isRacketsError, data: rackets }] = await Promise.all([brandsPromise, racketsPromise]);
 
+  if (isBrandError || isRacketsError) {
+    return null
+  }
+
   return <>
-    {!isBrandError && !isRacketsError && <RacketsWithFilter brands={brands ?? []} initialRackets={rackets ?? []} />}
+    <RacketsWithFilter brands={brands ?? []} initialRackets={rackets ?? []} />
   </>;
 }

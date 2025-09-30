@@ -21,10 +21,8 @@ export const RacketsWithFilter = ({ brands: initialBrands = [], initialRackets =
   const brands: Brand[] = useMemo(() => [{ id: BRAND_FILTER_ALL, name: 'All' }, ...initialBrands], [initialBrands]);
 
   const getFilteredRackets = useCallback(async () => {
-    const brand = brands.filter(brand => {
-      return brand.id === selectedBrandId && brand.id !== BRAND_FILTER_ALL;
-    });
-    const brandParam = brand.length > 0 ? brand[0].name : undefined;
+    const brand = brands.find(brand => brand.id === selectedBrandId && brand.id !== BRAND_FILTER_ALL)
+    const brandParam = brand?.name;
 
     try {
       const { isError, data } = await getProducts(1, 20, brandParam)

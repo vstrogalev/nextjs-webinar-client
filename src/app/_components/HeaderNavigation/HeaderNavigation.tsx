@@ -6,13 +6,13 @@ export const HeaderNavigation = () => {
   return (
     <nav>
       <ul className={styles.links}>
-        <li key={ROUTES.ROOT}>
+        <li>
           <LinkActiveByPath href={ROUTES.ROOT}>Главная</LinkActiveByPath>
         </li>
-        <li key={ROUTES.RACKETS}>
+        <li>
           <LinkActiveByPath href={ROUTES.RACKETS}>Ракетки</LinkActiveByPath>
         </li>
-        <li key={ROUTES.TOP_10}>
+        <li>
           <LinkActiveByPath href={ROUTES.TOP_10}>Топ 10</LinkActiveByPath>
         </li>
       </ul>

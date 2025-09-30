@@ -10,12 +10,24 @@ interface RacketCardProps {
   className?: string;
 }
 
-export const RacketCard = ({ imageUrl, href, name, className }: RacketCardProps) => {
+export const RacketCard = ({ imageUrl, href, name = '', className }: RacketCardProps) => {
 
   return (
-    <Link href={href ?? '#'} className={clsx(styles.racketCardContainer, className)}>
-      <Image src={imageUrl} alt='racket image' className={styles.image} width={250} height={320} />
-      {name && <p className={styles.name}>{name}</p>}
-    </Link>
+    <>
+      {href && <Link href={href} className={clsx(styles.racketCardContainer, className)}>
+        {getCardContent(imageUrl, name)}
+      </Link>}
+
+      {!href && <div className={clsx(styles.racketCardContainer, className)}>
+        {getCardContent(imageUrl, name)}
+      </div>}
+    </>
   )
+}
+
+function getCardContent(imageUrl: string, name: string) {
+  return <>
+    <Image src={imageUrl} alt='racket image' className={styles.image} width={250} height={320} />
+    {name && <p className={styles.name}>{name}</p>}
+  </>
 }
