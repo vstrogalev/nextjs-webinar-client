@@ -1,24 +1,17 @@
-'use client';
+import { getBrands } from '@/services/getBrands';
+import { RacketsWithFilter } from './_components/RacketsWithFilter/RacketsWithFilter';
+import { getProducts } from '@/services/getProducts';
 
-import { useState } from 'react';
-import { BrandFilter } from '@/components/BrandFilter/BrandFilter';
-import { mockRackets } from '@/constants/mockRackets';
-import { getBrandList } from './utils';
-import { RacketsList } from './_components/RacketsList/RacketsList';
-import { BRAND_FILTER_ALL } from '@/constants/brandFilterAll';
-import styles from "./page.module.css";
+export default async function RacketsPage() {
+  const brandsPromise = getBrands();
+  const racketsPromise = getProducts(1, 20);
+  const [{ isError: isBrandError, data: brands }, { isError: isRacketsError, data: rackets }] = await Promise.all([brandsPromise, racketsPromise]);
 
-export default function RacketsPage() {
-  const [selectedBrandId, setSelectedBrandId] = useState<number>(BRAND_FILTER_ALL);
+  if (isBrandError || isRacketsError) {
+    return null
+  }
 
-  const filteredRackets = selectedBrandId === BRAND_FILTER_ALL ? mockRackets : mockRackets.filter(racket => racket.brand.id === selectedBrandId)
-
-  const brandList = getBrandList(mockRackets);
-
-  return (
-    <section className={styles.page}>
-      <BrandFilter brands={brandList} selectedBrandId={selectedBrandId} onSelect={setSelectedBrandId} />
-      <RacketsList rackets={filteredRackets} />
-    </section>
-  );
+  return <>
+    <RacketsWithFilter brands={brands ?? []} initialRackets={rackets ?? []} />
+  </>;
 }

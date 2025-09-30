@@ -2,7 +2,7 @@
   padding: 2rem;
   display: grid;
   grid-template-columns: 3fr 4fr 3fr;
-  gap: 2rem;
+  gap: var(--gapXXL);
 
   .card {
     flex-grow: 1;

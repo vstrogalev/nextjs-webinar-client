@@ -1,29 +1,34 @@
-import { mockRackets } from '@/constants/mockRackets';
 import { notFound } from 'next/navigation';
 import { RacketDescription } from '@/components/RacketDescription/RacketDescription';
 import { RacketCard } from '@/components/RacketCard/RacketCard';
 import styles from "./page.module.css";
+import { getProductById } from '@/services/getProductById';
 
 interface RacketPageProps {
   params: Promise<{ id: string }>
 }
 
-export async function generateStaticParams() {
-  const rackets = mockRackets.slice(0, 3);
-
-  return rackets.map((racket) => ({
-    id: String(racket.id),
-  }))
-}
-
 export default async function RacketPage({ params }: RacketPageProps) {
   const { id } = await params;
-  const racket = mockRackets.find(racket => racket.id === Number(id));
-  if (!racket) {
+  const racketId = Number(id);
+
+  if (isNaN(racketId)) {
+    notFound();
+  };
+
+  const { isError, data } = await getProductById(racketId);
+
+  if (isError) {
+    return (
+      <div>Something went wrong. Update the page later.</div>
+    )
+  }
+
+  if (!data) {
     notFound();
   }
 
-  const { imageUrl, name, brand, description, price } = racket;
+  const { imageUrl, name, brand, description, price } = data;
   const brandName = brand.name;
   const formattedPrice = price.toFixed(2);
 
