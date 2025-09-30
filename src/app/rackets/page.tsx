@@ -1,6 +1,11 @@
 import { getBrands } from '@/services/getBrands';
 import { RacketsWithFilter } from './_components/RacketsWithFilter/RacketsWithFilter';
 import { getProducts } from '@/services/getProducts';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  description: 'all rackets with filter by brand'
+}
 
 export default async function RacketsPage() {
   const brandsPromise = getBrands();
