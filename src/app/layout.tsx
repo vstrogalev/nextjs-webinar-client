@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import NextTopLoader from 'nextjs-toploader';
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from './_components/Header/Header';
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <NextTopLoader />
         <div className={styles.layout}>
           <Header />
 

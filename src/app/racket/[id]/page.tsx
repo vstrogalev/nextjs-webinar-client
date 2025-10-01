@@ -1,11 +1,33 @@
 import { notFound } from 'next/navigation';
 import { RacketDescription } from '@/components/RacketDescription/RacketDescription';
 import { RacketCard } from '@/components/RacketCard/RacketCard';
-import styles from "./page.module.css";
 import { getProductById } from '@/services/getProductById';
+import { getMetadataProductById } from '@/services/getMetadataProductById';
+import { Metadata } from 'next';
+import styles from "./page.module.css";
 
 interface RacketPageProps {
   params: Promise<{ id: string }>
+}
+
+export const generateMetadata = async ({ params }: RacketPageProps): Promise<Metadata | undefined> => {
+  const { id } = await params;
+  const racketId = Number(id);
+
+  if (isNaN(racketId)) {
+    console.error("***** [ ~ page.tsx ~ generateMetadata ~ racketId is not a number ]", racketId);
+    return undefined
+  };
+
+  const { isError, data } = await getMetadataProductById(racketId)
+  if (isError || !data) {
+    console.error("***** [ ~ page.tsx ~ generateMetadata ~ error fetching metadata for racketId: ]", racketId);
+  }
+
+  return {
+    title: data?.name,
+    description: data?.description,
+  }
 }
 
 export default async function RacketPage({ params }: RacketPageProps) {

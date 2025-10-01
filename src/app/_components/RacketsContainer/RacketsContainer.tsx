@@ -1,3 +1,4 @@
+import { use } from 'react';
 import { APIResponse } from '@/types/response';
 import { RacketsTitle } from '../RacketsTitle/RacketsTitle';
 import { notFound } from 'next/navigation';
@@ -10,8 +11,8 @@ interface RacketsContainerProps {
   promise: Promise<APIResponse<Racket[]>>
 }
 
-export const RacketsContainer = async ({ title, href, promise }: RacketsContainerProps) => {
-  const { isError, data } = await promise;
+export const RacketsContainer = ({ title, href, promise }: RacketsContainerProps) => {
+  const { isError, data } = use(promise);
 
   if (isError) {
     return (
