@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from './_components/Header/Header';
 import { Footer } from './_components/Footer/Footer';
 import styles from './layout.module.css';
+import { UserProvider } from '@/providers/UserProvider';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,15 +32,17 @@ export default function RootLayout({
     <html lang="ru">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NextTopLoader />
-        <div className={styles.layout}>
-          <Header />
+        <UserProvider>
+          <div className={styles.layout}>
+            <Header />
 
-          <section className={styles.content}>
-            {children}
-          </section>
+            <section className={styles.content}>
+              {children}
+            </section>
 
-          <Footer />
-        </div>
+            <Footer />
+          </div>
+        </UserProvider>
       </body>
     </html>
   );

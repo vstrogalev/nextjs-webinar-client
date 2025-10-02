@@ -50,13 +50,14 @@ export default async function RacketPage({ params }: RacketPageProps) {
     notFound();
   }
 
-  const { imageUrl, name, brand, description, price } = data;
+  const { imageUrl, name, brand, description, price, userData } = data;
   const brandName = brand.name;
   const formattedPrice = price.toFixed(2);
+  const isFavorite = userData?.isFavorite;
 
   return (
     <section className={styles.page}>
-      <RacketDescription brand={brandName} name={name} description={description} />
+      <RacketDescription brand={brandName} name={name} description={description} isFavorite={isFavorite} />
       <RacketCard imageUrl={imageUrl} />
       <div className={styles.price}>{`€ ${formattedPrice}`}</div>
     </section>
