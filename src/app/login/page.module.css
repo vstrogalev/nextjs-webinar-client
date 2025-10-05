@@ -1,0 +1,45 @@
+.loginPageContainer {
+  padding-top: var(--gapXXL);
+  display: grid;
+  place-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gapMedium);
+}
+
+.form__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gapMedium);
+  margin-bottom: var(gapXXL);
+}
+
+.form__item {
+  width: 100%;
+  display: flex;
+  gap: var(--gapMedium);
+}
+
+.input {
+  flex-grow: 1;
+}
+
+.registration {
+  display: flex;
+}
+
+.link {
+  color: red;
+  display: inline-block;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.error {
+  color: var(--error);
+}

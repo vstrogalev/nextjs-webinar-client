@@ -12,6 +12,6 @@ export const LinkActiveByPath = ({ children, ...restProps }: LinkActiveByPathPro
   const path = usePathname();
   const href = restProps.href;
   return (
-    <NextLink {...restProps} className={clsx(styles.customLinkContainer, { [styles.active]: path === href })} >{children}</NextLink>
+    <NextLink {...restProps} className={clsx(styles.linkActiveByPathContainer, { [styles.active]: path === href })} >{children}</NextLink>
   )
 }

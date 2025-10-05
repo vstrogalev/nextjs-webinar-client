@@ -5,8 +5,8 @@
 
   max-width: 1280px;
   margin: 0 auto;
+}
 
-  .content {
-    flex-grow: 1;
-  }
+.content {
+  flex-grow: 1;
 }

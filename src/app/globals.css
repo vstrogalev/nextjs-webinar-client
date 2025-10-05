@@ -1,6 +1,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --error: #d73737;
   --foregroundHoverColor: rgb(60, 60, 60);
   --secondary: #6d6d6d;
   --selected: rgb(215, 140, 0);

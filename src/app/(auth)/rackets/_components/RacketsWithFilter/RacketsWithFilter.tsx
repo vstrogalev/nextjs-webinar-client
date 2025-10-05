@@ -3,10 +3,10 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { BRAND_FILTER_ALL } from '@/constants/brandFilterAll';
 import { BrandFilter } from '@/components/BrandFilter/BrandFilter';
-import { RacketsList } from '../../../../components/RacketsList/RacketsList';
 import { Brand } from '@/types/brand';
 import { Racket } from '@/types/racket';
 import { getProducts } from '@/services/getProducts';
+import { RacketsList } from '@/components/RacketsList/RacketsList';
 import styles from './RacketsWithFilter.module.css'
 
 interface RacketsListProps {

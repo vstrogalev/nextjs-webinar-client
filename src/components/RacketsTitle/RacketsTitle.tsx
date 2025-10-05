@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import styles from './RacketsTitle.module.css'
 
 interface RacketsTitleProps {
@@ -14,7 +13,6 @@ export const RacketsTitle = ({ title, href }: RacketsTitleProps) => {
       <h2 className={styles.title}>{title}</h2>
       <Link href={href} className={styles.link} >
         Все
-        <ArrowOutwardIcon className={styles.icon} fontSize='small' />
       </Link>
     </div>
   )

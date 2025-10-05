@@ -1,0 +1,9 @@
+.authPanelContainer {
+  display: flex;
+  gap: var(--gapMedium);
+}
+
+.user {
+  display: flex;
+  gap: var(--gapMedium);
+}
