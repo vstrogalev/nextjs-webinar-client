@@ -1,20 +1,18 @@
 'use client';
 
 import { useActionState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { signupAction } from './signup-action';
 import { SignupState } from '@/types/signup';
 import styles from './page.module.css';
 
 export default function RegistrationPage() {
   const [{ error, redirectTo }, formAction, isPending] = useActionState<SignupState, FormData>(signupAction, { error: '' });
-  const router = useRouter();
 
   useEffect(() => {
     if (redirectTo) {
-      router.replace(redirectTo);
+      location.assign(redirectTo);
     }
-  }, [redirectTo, router]);
+  }, [redirectTo]);
 
   return <div className={styles.signupPageContainer}>
     <form className={styles.form} action={formAction}>

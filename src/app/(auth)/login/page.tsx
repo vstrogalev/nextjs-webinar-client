@@ -4,7 +4,6 @@ import { useActionState, useEffect } from 'react';
 import { loginAction } from './login-action';
 import { LoginState } from '@/types/login';
 import { useUser } from '@/providers/UserProvider';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 import styles from './page.module.css';
@@ -12,13 +11,12 @@ import styles from './page.module.css';
 export default function LoginPage() {
   const [{ isLoggedIn, error, redirectTo, name }, formAction, isPending] = useActionState<LoginState, FormData>(loginAction, { isLoggedIn: false, error: '', name: undefined });
   const { setUser } = useUser();
-  const router = useRouter();
 
   useEffect(() => {
     if (redirectTo) {
-      router.replace(redirectTo);
+      location.assign(redirectTo);
     }
-  }, [redirectTo, router]);
+  }, [redirectTo]);
 
   useEffect(() => {
     if (isLoggedIn) {
