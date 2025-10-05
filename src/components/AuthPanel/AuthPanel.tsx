@@ -8,7 +8,7 @@ import styles from './AuthPanel.module.css'
 
 export const AuthPanel = () => {
   const { user } = useUser();
-  const userName = user.name;
+  const userName = user?.name;
 
   return (
     <nav className={styles.authPanelContainer}>

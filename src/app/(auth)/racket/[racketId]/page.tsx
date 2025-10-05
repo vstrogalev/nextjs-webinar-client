@@ -7,11 +7,11 @@ import { Metadata } from 'next';
 import styles from "./page.module.css";
 
 interface RacketPageProps {
-  params: Promise<{ id: string }>
+  params: Promise<{ racketId: string }>
 }
 
 export const generateMetadata = async ({ params }: RacketPageProps): Promise<Metadata | undefined> => {
-  const { id } = await params;
+  const { racketId: id } = await params;
   const racketId = Number(id);
 
   if (isNaN(racketId)) {
@@ -31,7 +31,7 @@ export const generateMetadata = async ({ params }: RacketPageProps): Promise<Met
 }
 
 export default async function RacketPage({ params }: RacketPageProps) {
-  const { id } = await params;
+  const { racketId: id } = await params;
   const racketId = Number(id);
 
   if (isNaN(racketId)) {

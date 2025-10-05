@@ -1,21 +1,22 @@
 'use client';
 
 import { User } from '@/types/user';
-import { createContext, useContext, useState } from 'react';
+import { createContext, PropsWithChildren, useContext } from 'react';
 
 interface IUserContext {
-  user: User;
-  setUser: (user: User) => void;
+  user: User | undefined;
 }
 
 const UserContext = createContext<IUserContext | undefined>(undefined);
 
+interface UserProviderProps extends PropsWithChildren {
+  user: User | undefined;
+}
 
-export function UserProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User>({ name: undefined });
+export async function UserProvider({ user, children }: UserProviderProps) {
 
   return (
-    <UserContext value={{ user, setUser }}>
+    <UserContext value={{ user }}>
       {children}
     </UserContext>
   );

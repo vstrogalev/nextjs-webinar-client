@@ -1,7 +1,6 @@
 'use server';
 
 import { BASE_URL, PATHS } from '@/constants/api';
-import { getUserData } from '@/services/getUserData';
 import { LoginState } from '@/types/login';
 import { parseSetCookie } from '@/utils/parseSetCookie';
 import { cookies } from 'next/headers';
@@ -23,7 +22,7 @@ export const loginAction = async (state: LoginState, formData: FormData): Promis
   })
 
   if (response.status !== 200) {
-    return { isLoggedIn: false, error: "Invalid data", name: undefined }
+    return { error: "Invalid data" }
   }
 
   const cookiesStore = await cookies();
@@ -36,17 +35,11 @@ export const loginAction = async (state: LoginState, formData: FormData): Promis
     }
   }
 
-  const userData = await getUserData();
-
   const result: LoginState = {
     ...state,
-    ...(userData.data?.name && { name: userData.data.name }),
-    ...(userData.data?.isAdmin && { isAdmin: userData.data.isAdmin }),
-    isLoggedIn: true,
     error: '',
     redirectTo: '/'
   }
-  console.log("***** [ ~ login-action.ts ~ loginAction ~ result ]", result);
 
   return result
 }

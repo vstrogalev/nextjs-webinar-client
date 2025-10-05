@@ -15,7 +15,7 @@ interface RacketDescriptionProps {
 export const RacketDescription = ({ brand, name, description, isFavorite: initialFavorite }: RacketDescriptionProps) => {
   const [isFavorite, setFavorite] = useState(initialFavorite);
   const { user } = useUser();
-  const isLoggedIn = useMemo(() => Boolean(user.name), [user.name])
+  const isLoggedIn = useMemo(() => Boolean(user?.name), [user?.name])
 
   const handleFavoriteClick = () => {
     setFavorite(prev => !prev)

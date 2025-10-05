@@ -1,8 +1,8 @@
-import { RacketsContainer } from './_components/RacketsContainer/RacketsContainer';
 import { ROUTES } from '@/constants/routes';
 import { getProducts } from '@/services/getProducts';
 import { getTop10 } from '@/services/getTop10';
 import { Suspense } from 'react';
+import { RacketsContainer } from '@/components/RacketsContainer/RacketsContainer';
 import styles from "./page.module.css";
 
 export default async function Home() {

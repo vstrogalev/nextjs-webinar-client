@@ -1,7 +1,4 @@
-import { User } from './user';
-
-export interface LoginState extends User {
-  isLoggedIn: boolean;
+export interface LoginState {
   error?: string;
   redirectTo?: string;
 }
