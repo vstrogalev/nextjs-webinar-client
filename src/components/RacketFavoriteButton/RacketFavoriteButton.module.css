@@ -1,0 +1,26 @@
+.racketFavoriteButtonContainer {
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.8rem;
+  line-height: 1;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  transition: opacity .3s ease-in;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+
+    &.active {
+      opacity: 0.5;
+    }
+  }
+
+  &.active {
+    background-color: var(--error);
+    color: var(--background);
+    opacity: 1;
+  }
+}

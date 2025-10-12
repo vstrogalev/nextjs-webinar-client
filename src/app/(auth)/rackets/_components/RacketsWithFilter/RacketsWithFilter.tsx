@@ -1,49 +1,24 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { BRAND_FILTER_ALL } from '@/constants/brandFilterAll';
 import { BrandFilter } from '@/components/BrandFilter/BrandFilter';
 import { Brand } from '@/types/brand';
 import { Racket } from '@/types/racket';
-import { getProducts } from '@/services/getProducts';
 import { RacketsList } from '@/components/RacketsList/RacketsList';
 import styles from './RacketsWithFilter.module.css'
 
 interface RacketsListProps {
   brands: Brand[];
-  initialRackets: Racket[];
+  rackets: Racket[];
 }
 
-export const RacketsWithFilter = ({ brands: initialBrands = [], initialRackets = [] }: RacketsListProps) => {
+export const RacketsWithFilter = ({ brands: initialBrands = [], rackets = [] }: RacketsListProps) => {
   const [selectedBrandId, setSelectedBrandId] = useState<number>(BRAND_FILTER_ALL);
-  const [rackets, setRackets] = useState(initialRackets);
-
-  const brands: Brand[] = useMemo(() => [{ id: BRAND_FILTER_ALL, name: 'All' }, ...initialBrands], [initialBrands]);
-
-  const getFilteredRackets = useCallback(async () => {
-    const brand = brands.find(brand => brand.id === selectedBrandId && brand.id !== BRAND_FILTER_ALL)
-    const brandParam = brand?.name;
-
-    try {
-      const { isError, data } = await getProducts(1, 20, brandParam)
-      if (isError) {
-        setRackets([])
-      }
-
-      setRackets(data ?? []);
-    } catch (error) {
-      console.log("***** [ ~ RacketsWithFilter.tsx ~ getFilteredRackets ~ error ]", error);
-    }
-  }, [brands, selectedBrandId])
-
-  useEffect(() => {
-    getFilteredRackets();
-  }, [selectedBrandId, getFilteredRackets])
-
 
   return (
     <section className={styles.racketsWithFilterContainer}>
-      <BrandFilter brands={brands} selectedBrandId={selectedBrandId} onSelect={setSelectedBrandId} />
+      <BrandFilter brands={initialBrands} selectedBrandId={selectedBrandId} onSelect={setSelectedBrandId} />
       <RacketsList title='Ракетки' rackets={rackets} />
     </section>
   );

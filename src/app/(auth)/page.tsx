@@ -1,11 +1,11 @@
 import { ROUTES } from '@/constants/routes';
-import { getProducts } from '@/services/getProducts';
+import { getRackets } from '@/services/getRackets';
 import { getTop10 } from '@/services/getTop10';
 import { Suspense } from 'react';
 import { RacketsContainer } from '@/components/RacketsContainer/RacketsContainer';
 
 export default async function Home() {
-  const racketsPromise = getProducts(1, 10);
+  const racketsPromise = getRackets(1, 10);
   const top10Promise = getTop10();
 
   return (

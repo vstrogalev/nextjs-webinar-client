@@ -13,7 +13,7 @@ interface UserProviderProps extends PropsWithChildren {
   user: User | undefined;
 }
 
-export async function UserProvider({ user, children }: UserProviderProps) {
+export function UserProvider({ user, children }: UserProviderProps) {
 
   return (
     <UserContext value={{ user }}>
