@@ -2,6 +2,7 @@ import { UserProvider } from '@/providers/UserProvider';
 import { Layout } from '@/components/Layout/Layout';
 import { getUserData } from '@/services/getUserData';
 import { User } from '@/types/user';
+import { FavoriteProvider } from '@/providers/FavoriteProvider';
 
 export default async function AuthLayout({
   children,
@@ -24,9 +25,11 @@ export default async function AuthLayout({
   const user: User | undefined = await getUser();
   return (
     <UserProvider user={user}>
-      <Layout>
-        {children}
-      </Layout>
+      <FavoriteProvider>
+        <Layout>
+          {children}
+        </Layout>
+      </FavoriteProvider>
     </UserProvider>
   );
 }

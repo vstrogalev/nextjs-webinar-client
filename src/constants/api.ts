@@ -1,6 +1,7 @@
 export const BASE_URL = 'http://localhost:4000/api';
 export const PATHS = {
   BRANDS: '/brands',
+  FAVORITE: '/favorite',
   LOGIN: '/auth/login',
   LOGOUT: '/auth/logout',
   META_PRODUCT: '/meta/product',

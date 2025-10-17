@@ -4,20 +4,20 @@
   flex-shrink: 0;
   flex-direction: column;
   padding-bottom: 1rem;
+}
 
-  .image {
-    padding: 0.1rem;
-    width: 100%;
-    border: var(--borderPrimary);
-    border-radius: var(--borderRadius);
-    margin-bottom: 1rem;
+.image {
+  padding: 0.1rem;
+  width: 100%;
+  border: var(--borderPrimary);
+  border-radius: var(--borderRadius);
+  margin-bottom: 1rem;
 
-    &:hover {
-      border: var(--borderSecondary);
-    }
+  &:hover {
+    border: var(--borderSecondary);
+  }
 
-    .name {
-      font-size: medium;
-    }
+  .name {
+    font-size: medium;
   }
 }

@@ -1,11 +1,16 @@
 import { BASE_URL, PATHS } from '@/constants/api'
 import { Racket } from '@/types/racket';
 import { APIResponse } from '@/types/response';
+import { cookies } from 'next/headers';
 
 export const getTop10 = async (): Promise<APIResponse<Racket[]>> => {
+  const cookieStore = await cookies();
+
   const response = await fetch(`${BASE_URL}${PATHS.TOP_10}`, {
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
     next: {
-      revalidate: 15,
       tags: ['getTop10Rackets']
     }
   });

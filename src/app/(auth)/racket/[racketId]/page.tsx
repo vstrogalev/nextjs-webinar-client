@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 import { RacketDescription } from '@/components/RacketDescription/RacketDescription';
 import { RacketCard } from '@/components/RacketCard/RacketCard';
-import { getProductById } from '@/services/getProductById';
-import { getMetadataProductById } from '@/services/getMetadataProductById';
+import { getRacketById } from '@/services/getRacketById';
+import { getRacketMetadataById } from '@/services/getRacketMetadataById';
 import { Metadata } from 'next';
 import styles from "./page.module.css";
 
@@ -19,7 +19,7 @@ export const generateMetadata = async ({ params }: RacketPageProps): Promise<Met
     return undefined
   };
 
-  const { isError, data } = await getMetadataProductById(racketId)
+  const { isError, data } = await getRacketMetadataById(racketId)
   if (isError || !data) {
     console.error("***** [ ~ page.tsx ~ generateMetadata ~ error fetching metadata for racketId: ]", racketId);
   }
@@ -38,8 +38,7 @@ export default async function RacketPage({ params }: RacketPageProps) {
     notFound();
   };
 
-  const { isError, data } = await getProductById(racketId);
-
+  const { isError, data } = await getRacketById(racketId);
   if (isError) {
     return (
       <div>Something went wrong. Update the page later.</div>
@@ -57,7 +56,7 @@ export default async function RacketPage({ params }: RacketPageProps) {
 
   return (
     <section className={styles.page}>
-      <RacketDescription brand={brandName} name={name} description={description} isFavorite={isFavorite} />
+      <RacketDescription brand={brandName} name={name} description={description} isFavorite={isFavorite} racketId={racketId} />
       <RacketCard imageUrl={imageUrl} />
       <div className={styles.price}>{`€ ${formattedPrice}`}</div>
     </section>

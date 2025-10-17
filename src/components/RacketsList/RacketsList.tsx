@@ -1,6 +1,10 @@
+'use client';
+
 import { Racket } from '@/types/racket';
 import { RacketCard } from '@/components/RacketCard/RacketCard';
 import { ROUTES } from '@/constants/routes';
+import { RacketCardFooter } from '../RacketCard/RacketCardFooter/RacketCardFooter';
+import { useUserInfo } from '@/hooks/useUserInfo';
 import styles from './RacketsList.module.css'
 
 interface RacketsListProps {
@@ -9,6 +13,7 @@ interface RacketsListProps {
 }
 
 export const RacketsList = ({ title, rackets }: RacketsListProps) => {
+  const { isLoggedIn } = useUserInfo();
 
   return (
     <article className={styles.racketsListContainer}>
@@ -19,8 +24,9 @@ export const RacketsList = ({ title, rackets }: RacketsListProps) => {
             <RacketCard
               imageUrl={racket.imageUrl}
               href={`${ROUTES.RACKET}/${racket.id}`}
-              name={racket.name}
-            />
+            >
+              <RacketCardFooter id={racket.id} name={racket.name} isFavorite={racket.userData?.isFavorite} isLoggedIn={isLoggedIn} />
+            </RacketCard>
           </li>
         ))}
       </ul>

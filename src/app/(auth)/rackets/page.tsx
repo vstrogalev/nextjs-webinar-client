@@ -1,6 +1,6 @@
 import { getBrands } from '@/services/getBrands';
 import { RacketsWithFilter } from './_components/RacketsWithFilter/RacketsWithFilter';
-import { getProducts } from '@/services/getProducts';
+import { getRackets } from '@/services/getRackets';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default async function RacketsPage() {
   const brandsPromise = getBrands();
-  const racketsPromise = getProducts(1, 20);
+  const racketsPromise = getRackets(1, 20);
   const [{ isError: isBrandError, data: brands }, { isError: isRacketsError, data: rackets }] = await Promise.all([brandsPromise, racketsPromise]);
 
   if (isBrandError || isRacketsError) {
@@ -17,6 +17,6 @@ export default async function RacketsPage() {
   }
 
   return <>
-    <RacketsWithFilter brands={brands ?? []} initialRackets={rackets ?? []} />
+    <RacketsWithFilter brands={brands ?? []} rackets={rackets ?? []} />
   </>;
 }
