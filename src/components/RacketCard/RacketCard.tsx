@@ -16,17 +16,17 @@ export const RacketCard = ({ imageUrl, href, className, children }: RacketCardPr
   return (
     <>
       {href && <Link href={href} className={clsx(styles.racketCardContainer, className)}>
-        {getCardContent(imageUrl, children)}
+        <CardContent imageUrl={imageUrl}>{children}</CardContent>
       </Link>}
 
       {!href && <div className={clsx(styles.racketCardContainer, className)}>
-        {getCardContent(imageUrl, children)}
+        <CardContent imageUrl={imageUrl}>{children}</CardContent>
       </div>}
     </>
   )
 }
 
-function getCardContent(imageUrl: string, children: React.ReactNode) {
+function CardContent({ imageUrl, children }: PropsWithChildren<{ imageUrl: string }>) {
   return <>
     <Image src={imageUrl} alt='racket image' className={styles.image} width={250} height={320} />
     {children}

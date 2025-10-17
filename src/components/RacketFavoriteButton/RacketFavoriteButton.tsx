@@ -32,7 +32,7 @@ export const RacketFavoriteButton = ({ racketId, isFavorite: isFavoriteInitial }
   return (
     <button
       className={clsx(styles.racketFavoriteButtonContainer, { [styles.active]: isFavorite })}
-      onClick={(e) => handleFavoriteClick(e)}
+      onClick={handleFavoriteClick}
       disabled={isPending}
     >
       &hearts;
