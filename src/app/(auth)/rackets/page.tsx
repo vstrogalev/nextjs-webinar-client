@@ -2,21 +2,36 @@ import { getBrands } from '@/services/getBrands';
 import { RacketsWithFilter } from './_components/RacketsWithFilter/RacketsWithFilter';
 import { getRackets } from '@/services/getRackets';
 import { Metadata } from 'next';
+import { SWRConfig } from 'swr';
+import { PATHS } from '@/constants/api';
+import { MAX_ITEMS_PER_PAGE } from '@/constants/constants';
 
 export const metadata: Metadata = {
   description: 'all rackets with filter by brand'
 }
 
-export default async function RacketsPage() {
-  const brandsPromise = getBrands();
-  const racketsPromise = getRackets(1, 20);
-  const [{ isError: isBrandError, data: brands }, { isError: isRacketsError, data: rackets }] = await Promise.all([brandsPromise, racketsPromise]);
+interface RacketsPageSearchParams {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
 
-  if (isBrandError || isRacketsError) {
-    return null
+export default async function RacketsPage({ searchParams }: RacketsPageSearchParams) {
+  const { page = "1", brand } = await searchParams;
+
+  let pageNumber = 1;
+  if (typeof page === "string") {
+    pageNumber = parseInt(page) || 1;
   }
+  const brandName = typeof brand === 'string' ? brand : undefined;
 
-  return <>
-    <RacketsWithFilter brands={brands ?? []} rackets={rackets ?? []} />
-  </>;
+  return <SWRConfig
+    value={{
+      fallback: {
+        [`${PATHS.PRODUCTS}?page=${page}&limit=${MAX_ITEMS_PER_PAGE}&brand=${brand}`]: getRackets(pageNumber, MAX_ITEMS_PER_PAGE, brandName),
+        [`${PATHS.BRANDS}`]: getBrands(),
+      },
+      revalidateOnFocus: false,
+    }}
+  >
+    <RacketsWithFilter page={pageNumber} brand={brandName} />
+  </SWRConfig>;
 }
