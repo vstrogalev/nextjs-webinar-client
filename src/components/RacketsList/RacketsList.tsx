@@ -5,14 +5,20 @@ import { RacketCard } from '@/components/RacketCard/RacketCard';
 import { ROUTES } from '@/constants/routes';
 import { RacketCardFooter } from '../RacketCard/RacketCardFooter/RacketCardFooter';
 import { useUserInfo } from '@/hooks/useUserInfo';
+import { LoadMoreButton } from '../LoadMoreButton/LoadMoreButton';
 import styles from './RacketsList.module.css'
 
 interface RacketsListProps {
   title: string;
   rackets: Racket[];
+  pagination?: {
+    isReachingEnd: boolean;
+    isLoadingMore: boolean;
+    onLoadMoreClick: () => void;
+  }
 }
 
-export const RacketsList = ({ title, rackets }: RacketsListProps) => {
+export const RacketsList = ({ title, rackets, pagination }: RacketsListProps) => {
   const { isLoggedIn } = useUserInfo();
 
   return (
@@ -30,6 +36,8 @@ export const RacketsList = ({ title, rackets }: RacketsListProps) => {
           </li>
         ))}
       </ul>
+
+      {(pagination && !pagination?.isReachingEnd) && <LoadMoreButton isLoadingMore={pagination?.isLoadingMore} onClick={pagination?.onLoadMoreClick} />}
     </article>
   )
 }

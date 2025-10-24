@@ -1,25 +1,62 @@
 'use client';
 
-import { useState } from 'react';
-import { BRAND_FILTER_ALL } from '@/constants/brandFilterAll';
 import { BrandFilter } from '@/components/BrandFilter/BrandFilter';
-import { Brand } from '@/types/brand';
-import { Racket } from '@/types/racket';
 import { RacketsList } from '@/components/RacketsList/RacketsList';
+import { MAX_ITEMS_PER_PAGE } from '@/constants/constants';
+import { racketsFetcher } from '@/app/api/racketsFetcher';
+import { Racket } from '@/types/racket';
+import useSWRInfinite from 'swr/infinite';
+import { getKey } from '../../utils';
 import styles from './RacketsWithFilter.module.css'
 
-interface RacketsListProps {
-  brands: Brand[];
-  rackets: Racket[];
+interface RacketsWithFilterProps {
+  initialData: Racket[];
+  brand: string | undefined,
 }
 
-export const RacketsWithFilter = ({ brands: initialBrands = [], rackets = [] }: RacketsListProps) => {
-  const [selectedBrandId, setSelectedBrandId] = useState<number>(BRAND_FILTER_ALL);
+export const RacketsWithFilter = ({ brand, initialData }: RacketsWithFilterProps) => {
+  const { data, error, isLoading, size, setSize } = useSWRInfinite<Racket[]>(
+    getKey(initialData, brand),
+    racketsFetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateFirstPage: false,
+      parallel: true,
+    }
+  );
+
+  const rackets: Racket[] = data ? ([] as Racket[]).concat(...data) : [];
+
+  const isLoadingMore = isLoading || (size > 0 && data && typeof data[size - 1] === "undefined");
+  const isEmpty = data?.[0]?.length === 0;
+  const isReachingEnd = isEmpty || (data && data[data.length - 1]?.length < MAX_ITEMS_PER_PAGE);
+
+  if (error) {
+    return "some error";
+  }
+
+  if (isLoading && !rackets.length) {
+    return "isInitialLoading...";
+  }
+
+  if (isEmpty) {
+    return "no rackets";
+  }
 
   return (
     <section className={styles.racketsWithFilterContainer}>
-      <BrandFilter brands={initialBrands} selectedBrandId={selectedBrandId} onSelect={setSelectedBrandId} />
-      <RacketsList title='Ракетки' rackets={rackets} />
+      <BrandFilter />
+
+      <RacketsList
+        title='Ракетки'
+        rackets={rackets}
+        pagination={{
+          isLoadingMore: !!isLoadingMore,
+          isReachingEnd: !!isReachingEnd,
+          onLoadMoreClick: () => setSize(size + 1),
+        }}
+      />
     </section>
   );
 }
