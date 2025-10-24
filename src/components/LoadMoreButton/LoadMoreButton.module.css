@@ -1,0 +1,9 @@
+.loadMoreButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  padding: var(--spacingMedium);
+  cursor: pointer;
+}
